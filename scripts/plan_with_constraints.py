@@ -133,7 +133,7 @@ class ConstraintPlanning:
         self.robot.Grab(target)
         showtarget = None
 
-        '''
+        
         #show target destination
         if showgoalcup:
             # create a dummy cup to show destinations
@@ -193,7 +193,7 @@ class ConstraintPlanning:
             if showtarget is not None:
                 self.envreal.Remove(showtarget)
 
-        '''
+        
 def main(env,options):
     "Main example code."
     env.Load(options.scene)
