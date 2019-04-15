@@ -78,7 +78,7 @@ class ConstraintPlanning:
 
         #Dynamically generate/load the grasping set for a robot manipulator and target object
         #gets a grasp model of the target object (mug1). If none is found, a grasp model is auto-generated
-        self.gmodel = databases.grasping.GraspingModel(robot=self.robot,target=self.envreal.GetKinBody('mug1'))
+        self.gmodel = databases.grasping.GraspingModel(robot=self.robot,target=self.envreal.GetKinBody('mug3'))
         if not self.gmodel.load():
             self.gmodel.autogenerate()
 
@@ -133,6 +133,7 @@ class ConstraintPlanning:
         self.robot.Grab(target)
         showtarget = None
 
+        '''
         #show target destination
         if showgoalcup:
             # create a dummy cup to show destinations
@@ -191,6 +192,8 @@ class ConstraintPlanning:
         finally:
             if showtarget is not None:
                 self.envreal.Remove(showtarget)
+
+        '''
 def main(env,options):
     "Main example code."
     env.Load(options.scene)
