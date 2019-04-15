@@ -55,10 +55,12 @@ class ConstraintPlanning:
         #Generates 10 valid grasp configurations
         #Chooses one at random
         # only use one grasp since preshape can change
-        validgrasps,validindices = self.gmodel.computeValidGrasps(returnnum=10)
+        start = time.time()
+        validgrasps,validindices = self.gmodel.computeValidGrasps(returnnum=1)
         validgrasp=validgrasps[random.randint(len(validgrasps))]
-
-
+        elapsed = time.time() - start
+        print 'TIME ELAPSED: %0.5f seconds'%elapsed
+        initialvalues = self.robot.GetDOFValues(self.gmodel.manip.GetArmIndices())
         #set preshape of the grasp and get joint values
         with self.robot:
             self.gmodel.setPreshape(validgrasp)
@@ -88,7 +90,13 @@ class ConstraintPlanning:
 
         #grab target object
         self.robot.Grab(target)
-        
+
+        # raw_input('press any key to release')
+        # self.taskmanip.ReleaseFingers(target=target)
+        self.robot.WaitForController(10)
+        self.basemanip.MoveManipulator(initialvalues)
+        time.sleep(10)
+
         
 def main(env,options):
     "Main example code."
