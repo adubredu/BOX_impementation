@@ -1,4 +1,5 @@
-"""Loads the grasping model and moves the robot to the first grasp found
+"""Loads the grasping model, moves the robot to the first grasp found to mug4
+	and raises the mug
 """
 from openravepy import *
 import numpy, time
@@ -25,7 +26,7 @@ robot.WaitForController(0)
 taskmanip = interfaces.TaskManipulation(robot)
 taskmanip.CloseFingers()
 robot.WaitForController(0)
-# robot.Grab(target)
-# robot.WaitForController(0)
-# basemanip.MoveManipulator(initialvalues)
+robot.Grab(target)
+robot.WaitForController(0)
+basemanip.MoveManipulator(initialvalues)
 # time.sleep(10)
