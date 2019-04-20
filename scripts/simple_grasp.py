@@ -5,10 +5,11 @@ from openravepy import *
 import numpy, time
 import pdb
 env=Environment()
-env.Load('data/lab1.env.xml')
+env.Load('data/wam_cabinet.env.xml')
 env.SetViewer('qtcoin')
 robot = env.GetRobots()[0]
 target = env.GetKinBody('mug4')
+time.sleep(300)
 # pdb.set_trace()
 begin = time.time()
 gmodel = databases.grasping.GraspingModel(robot,target)

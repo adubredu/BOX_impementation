@@ -1,8 +1,5 @@
-"""Loads the grasping model, moves the robot to the first grasp found to mug4
-	and raises the mug
-
-	I've editted /usr/local/lib/python2.7/dist-packages/openravepy/_openravepy_/interfaces/BaseManipulation.py
-	to return 0 whenever the planner fails to find a valid trajectory
+"""
+Creates the D-matrix
 """
 from openravepy import *
 import numpy, time
@@ -28,7 +25,7 @@ initialvalues = robot.GetDOFValues(gmodel.manip.GetArmIndices())
 
 '''
 ######################
-#GENERATE VALID GRASPS
+#GENERATE VALID GRASPS (constraints)
 ######################
 
 gmodel = databases.grasping.GraspingModel(robot,target)#.autogenerate()
