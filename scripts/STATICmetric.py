@@ -11,7 +11,7 @@ import pdb
 import pickle
 
 env=Environment()
-env.Load('data/wam_cabinet.env.xml')
+env.Load('data/testwamcamera.env.xml')
 env.SetViewer('qtcoin')
 robot = env.GetRobots()[0]
 
@@ -37,9 +37,10 @@ constraint = validgrasps[min_index]
 
 
 #Performing task with chosen constraint
-target = env.GetKinBody('plasticmugb4')
+target = env.GetKinBody('mug3')
 gmodel = databases.grasping.GraspingModel(robot,target)
-gmodel.load()
+if not gmodel.load():
+	gmodel.autogenerate()
 
 #start timing
 start = time.time()

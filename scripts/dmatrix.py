@@ -89,6 +89,7 @@ pickle.dump(D, g)
 f.close()
 
 '''
+D = 3 x 10
 Time for entire planning: 5.2016 seconds
 Score for plan is consistently -27.631 after anything above 21 max iterations
 25 waypoints
