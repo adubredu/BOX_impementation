@@ -8,72 +8,6 @@ from math import sqrt
 
 
 
-def GaussianBOX(w_n,C,k,Theta,D):
-	mu = np.mean(D)
-	cov = np.cov(D)
-
-
-	for i in range(0,k):
-		theta = np.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
 def GaussianBox(train,test,n_samples,C):
 	test = np.array(test); train = np.array(train)
 
@@ -91,10 +25,9 @@ def GaussianBox(train,test,n_samples,C):
 	# print CI
 	t_idx = np.maximum
 
-train = np.ones((4,8))
-test = np.ones(8)
+train = np.rand((4,8))
+test = np.rand(8)
 k = 4
 
 
 GaussianBox(train=train, test=test,n_samples=k, C=1)
-'''

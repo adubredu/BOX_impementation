@@ -37,12 +37,13 @@ constraint = validgrasps[min_index]
 
 
 #Performing task with chosen constraint
-target = env.GetKinBody('mug3')
+target = env.GetKinBody('plasticmugb2')
 gmodel = databases.grasping.GraspingModel(robot,target)
 if not gmodel.load():
 	gmodel.autogenerate()
-
+initialvalues = robot.GetDOFValues(gmodel.manip.GetArmIndices())
 #start timing
+time.sleep(30)
 start = time.time()
 gmodel.moveToPreshape(constraint)
 Tgoal = gmodel.getGlobalGraspTransform(constraint, collisionfree=True)
@@ -65,6 +66,11 @@ robot.WaitForController(0)
 taskmanip = interfaces.TaskManipulation(robot)
 taskmanip.CloseFingers()
 robot.WaitForController(0)
+# robot.WaitForController(0)
+robot.Grab(target)
+robot.WaitForController(0)
+basemanip.MoveManipulator(initialvalues)
+time.sleep(10)
 # basemanip.MoveManipulator()
 
 print "SCORE IS: %.4f"%(score*-1)

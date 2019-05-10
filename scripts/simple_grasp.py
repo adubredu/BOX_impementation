@@ -24,6 +24,7 @@ print "COMPUTE GRASP TIME: %0.4f"%end
 gmodel.moveToPreshape(validgrasps[0])
 Tgoal = gmodel.getGlobalGraspTransform(validgrasps[0],collisionfree=True)
 basemanip = interfaces.BaseManipulation(robot,plannername='BiRRT')
+time.sleep(10)
 start = time.time()
 basemanip.MoveToHandPosition(matrices=[Tgoal],timelimit=2)
 elapsed = time.time()-start
