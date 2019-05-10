@@ -14,9 +14,12 @@ function [evaled_thetas,avgs,CIs] = GaussianBOX( train, test, n_samples, C, infe
     
     % choose the first theta based on the best 95% confidence interval
     evaled_thetas = [];
-    ts = tinv([C],size(train,1)-1);
+    ts = tinv([C],size(train,1));
+    
 
     CI = data_mu' + ts*(1/sqrt(size(train,1)))*sqrt(diag((data_cov)));
+    size(CI);
+   
     [~,t_idx] = max(CI);
     evaled_thetas(1) = t_idx;
     evaled_theta=t_idx;
@@ -61,14 +64,15 @@ function [evaled_thetas,avgs,CIs] = GaussianBOX( train, test, n_samples, C, infe
         data_cov = DD - dD*inv(dd)*dD';
         
         % compute the 95 confidence interval of the evaled thetas
-        CI = data_mu' + ts*(1/sqrt(size(train,1)))*sqrt(diag((data_cov)));
+        CI = data_mu' + ts*(1/sqrt(size(train,1)))*sqrt(diag((data_cov)))
         CI(evaled_thetas) = test(evaled_thetas); % set the evaled ones to their actual values
         avgs(k,:) = data_mu;
 
         % choose the next best one if we ever choose the old one again
         % this problem would go away if I fiddle with the indexing...
         [~,t_idx_list] = sort(CI,'descend');
-        t_idx = t_idx_list(1); idx=1;
+        t_idx = t_idx_list(1);
+        idx=1;
         while any(evaled_thetas==t_idx) 
             idx = idx+1;
             t_idx = t_idx_list(idx);
